@@ -6,7 +6,7 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.get("/", (request, response) => {
-	response.send("Hello Express");
+	response.redirect("/main.html");
 });
 app.get("/users", (req, res) => {
 	// hard-coded user data
