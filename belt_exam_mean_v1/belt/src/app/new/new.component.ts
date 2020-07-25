@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "app-new",
 	templateUrl: "./new.component.html",
-	styleUrls: ["./new.component.css"]
+	styleUrls: ["./new.component.css"],
 })
 export class NewComponent implements OnInit {
 	newPet: any;
@@ -17,7 +17,7 @@ export class NewComponent implements OnInit {
 			name: "",
 			type: "",
 			description: "",
-			skills: []
+			skills: [],
 		};
 
 		console.log(typeof this.newPet.skills);
@@ -26,17 +26,16 @@ export class NewComponent implements OnInit {
 	onSubmit() {
 		let observable = this._httpService.addPet(this.newPet);
 		observable.subscribe(
-			res => {
+			(res) => {
 				this._router.navigate(["/pets"]);
 				console.log("res", res);
 				if (res["errors"]) {
 					this.error = res["message"];
+					this._router.navigate(["/pets/new"]);
 				}
 			},
-			error => {
+			(error) => {
 				console.log(error);
-
-				// this._router.navigate(["/new"]);
 			}
 		);
 	}

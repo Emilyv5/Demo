@@ -13,6 +13,9 @@ import { PetsComponent } from "./pets/pets.component";
 import { NewComponent } from "./new/new.component";
 import { EditComponent } from "./edit/edit.component";
 import { DisplayComponent } from "./display/display.component";
+import { LoginComponent } from "./login/login.component";
+import { HomeComponent } from "./home/home.component";
+import { RegisterComponent } from "./register/register.component";
 
 @NgModule({
 	declarations: [
@@ -20,10 +23,14 @@ import { DisplayComponent } from "./display/display.component";
 		PetsComponent,
 		NewComponent,
 		EditComponent,
-		DisplayComponent
+		DisplayComponent,
+		LoginComponent,
+		HomeComponent,
+		RegisterComponent,
 	],
 	imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

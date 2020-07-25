@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const PetSchema = new mongoose.Schema(
 	{
@@ -8,8 +9,8 @@ const PetSchema = new mongoose.Schema(
 				validator: function(arr) {
 					return arr;
 				},
-				message: "Name can not be empty."
-			}
+				message: "Name can not be empty.",
+			},
 		},
 		type: {
 			type: String,
@@ -17,8 +18,8 @@ const PetSchema = new mongoose.Schema(
 				validator: function(arr) {
 					return arr;
 				},
-				message: "Type can not be empty."
-			}
+				message: "Type can not be empty.",
+			},
 		},
 		description: {
 			type: String,
@@ -26,8 +27,8 @@ const PetSchema = new mongoose.Schema(
 				validator: function(arr) {
 					return arr;
 				},
-				message: "Description can not be empty."
-			}
+				message: "Description can not be empty.",
+			},
 		},
 		skills: {
 			type: Array,
@@ -35,11 +36,45 @@ const PetSchema = new mongoose.Schema(
 				validator: function(arr) {
 					return !(arr.length > 3);
 				},
-				message: "Skills can."
-			}
+				message: "Skills can.",
+			},
 		},
 
-		likes: { type: Number, default: 0 }
+		likes: { type: Number, default: 0 },
+	},
+	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
+
+const UserSchema = new mongoose.Schema(
+	{
+		uername: { type: String, required: true, unique: true },
+		password: { type: String, required: true },
+		images: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: "Blog",
+			},
+		],
+	},
+	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
+
+const BlogSchema = new mongoose.Schema(
+	{
+		body: { type: String },
+		owner: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: "User",
+			},
+		],
+		likes: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: "User",
+			},
+		],
+		img: { data: Buffer, contentTypes: String },
 	},
 	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
@@ -57,5 +92,11 @@ PetSchema.path("description").validate(function(description) {
 }, "Description is at least 3 characters");
 
 const Pet = mongoose.model("Pet", PetSchema);
+const User = mongoose.model("User", UserSchema);
+const Blog = mongoose.model("Blog", BlogSchema);
 
-module.exports = Pet;
+module.exports = {
+	Pet: Pet,
+	User: User,
+	Blog: Blog,
+};

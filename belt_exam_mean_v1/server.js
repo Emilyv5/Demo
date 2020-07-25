@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 require("./server/config/routes.js")(app);
 
-app.all("*", (req, res, next) => {
+app.all("**", (req, res, next) => {
 	res.sendFile(path.resolve("./belt/dist/belt/index.html"));
 });
 
-app.listen(8000, () => console.log("listening on port 8000"));
+app.listen(8080, () => console.log("listening on port 8080"));

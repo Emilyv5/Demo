@@ -22,4 +22,11 @@ module.exports = function(app) {
     app.delete("/pet/:id", (req, res) => {
         authors.delete(req, res);
     });
+
+    app.post("/register", (req, res) => {
+        authors.register(req, res);
+    });
+    app.post("/addblog", (req, res) => {
+        authors.addpost(req, res);
+    });
 };
