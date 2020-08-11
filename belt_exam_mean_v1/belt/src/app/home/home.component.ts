@@ -7,10 +7,10 @@ import { first } from "rxjs/operators";
 // import { AlertService, AuthenticationService } from "@/_services";
 
 @Component({
-	selector: "app-login",
-	templateUrl: "./login.component.html",
-	styleUrls: ["./login.component.css"],
+	selector: "app-home",
+	templateUrl: "./home.component.html",
+	styleUrls: ["./home.component.css"],
 })
-export class LoginComponent implements OnInit {
+export class HomeComponent implements OnInit {
 	ngOnInit() {}
 }

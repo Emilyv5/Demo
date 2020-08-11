@@ -11,6 +11,6 @@ import { first } from "rxjs/operators";
 	templateUrl: "./register.component.html",
 	styleUrls: ["./register.component.css"],
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 	ngOnInit() {}
 }
